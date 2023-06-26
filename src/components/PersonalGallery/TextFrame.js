@@ -1,3 +1,4 @@
+// TextFrame.js
 import React from "react";
 import styled from "styled-components";
 
@@ -28,18 +29,18 @@ const ContentsWrapper = styled.span`
   font-weight: normal;
 `;
 
-export default function TextFrame() {
+export default function TextFrame({ date, photographer }) {
   return (
     <FrameText>
       <StyledText>
         <TextWrapper>
           <TitleWrapper>
-            Date : <ContentsWrapper>202235131</ContentsWrapper>
+            Date : <ContentsWrapper>{date}</ContentsWrapper>
           </TitleWrapper>
         </TextWrapper>
         <TextWrapper>
           <TitleWrapper>
-            PhotoGrapher : <ContentsWrapper>HyeWon</ContentsWrapper>
+            PhotoGrapher : <ContentsWrapper>{photographer}</ContentsWrapper>
           </TitleWrapper>
         </TextWrapper>
       </StyledText>

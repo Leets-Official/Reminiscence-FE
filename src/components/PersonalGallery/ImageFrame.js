@@ -1,3 +1,4 @@
+// ImageFrame.js
 import React from "react";
 import styled from "styled-components";
 
@@ -15,10 +16,17 @@ const StyledFrame = styled.div`
   background: #d9d9d9;
 `;
 
-export default function ImageFrame() {
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+export default function ImageFrame({ imageUrl, caption }) {
   return (
     <FrameDiv>
-      <StyledFrame></StyledFrame>
+      <StyledFrame>
+        <Image src={imageUrl} alt={caption} />
+      </StyledFrame>
     </FrameDiv>
   );
 }

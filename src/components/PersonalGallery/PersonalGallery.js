@@ -1,12 +1,11 @@
+// PersonalGallery.js
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 import ImageSlide from "./ImageSlide";
-import ImageFrame from "./ImageFrame";
-import TextFrame from "./TextFrame";
 
 const GlobalStyle = createGlobalStyle`
   body{
-    background-color : black;
+    background-color: black;
   }
 `;
 
@@ -15,8 +14,6 @@ export default function PersonalGallery() {
     <div>
       <GlobalStyle />
       <ImageSlide />
-      <ImageFrame />
-      <TextFrame />
     </div>
   );
 }
