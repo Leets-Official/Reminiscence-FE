@@ -1,19 +1,29 @@
 // PersonalGallery.js
-import React from "react";
-import { createGlobalStyle } from "styled-components";
-import ImageSlide from "./ImageSlide";
+import React, { useState } from 'react';
+import { createGlobalStyle } from 'styled-components';
+import ImageSlide from './ImageSlide';
+import HamburgerIcon from './HamburgerIcon';
+import HamburgerMenu from './HamburgerMenu';
 
 const GlobalStyle = createGlobalStyle`
-  body{
+  body {
     background-color: black;
   }
 `;
 
 export default function PersonalGallery() {
+  const [sideNav, setSideNav] = useState(false);
+
+  const toggleMenu = () => {
+    setSideNav(!sideNav);
+  };
+
   return (
     <div>
       <GlobalStyle />
       <ImageSlide />
+      <HamburgerIcon sideNav={sideNav} setSideNav={setSideNav} onClick={toggleMenu} />
+      <HamburgerMenu isOpen={sideNav} />
     </div>
   );
 }

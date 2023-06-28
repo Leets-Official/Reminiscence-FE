@@ -1,6 +1,6 @@
 // TextFrame.js
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const FrameText = styled.div`
   position: fixed;
@@ -22,14 +22,14 @@ const TextWrapper = styled.div`
 
 const TitleWrapper = styled.span`
   font-weight: bold;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
 `;
 
 const ContentsWrapper = styled.span`
   font-weight: normal;
 `;
 
-export default function TextFrame({ date, photographer }) {
+export default function TextFrame({ date, photographer, caption }) {
   return (
     <FrameText>
       <StyledText>
@@ -41,6 +41,11 @@ export default function TextFrame({ date, photographer }) {
         <TextWrapper>
           <TitleWrapper>
             PhotoGrapher : <ContentsWrapper>{photographer}</ContentsWrapper>
+          </TitleWrapper>
+        </TextWrapper>
+        <TextWrapper>
+          <TitleWrapper>
+            Caption : <ContentsWrapper>{caption}</ContentsWrapper>
           </TitleWrapper>
         </TextWrapper>
       </StyledText>

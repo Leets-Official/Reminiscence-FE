@@ -1,24 +1,24 @@
 export const ImageData = [
   {
     id: 1,
-    imageUrl: "https://example.com/image1.jpg",
-    date: "2023-01-05",
-    caption: "Beautiful sunset",
-    photographer: "John Doe",
+    imageUrl: 'https://kr.game-game.com/gamesimg/178952_big.jpg',
+    date: '2023-01-05',
+    caption: 'Soccer Game',
+    photographer: 'John Doe',
   },
   {
     id: 2,
-    imageUrl: "https://example.com/image2.jpg",
-    date: "2022-01-07",
-    caption: "Mountain view",
-    photographer: "Jane Smith",
+    imageUrl: 'https://www.urbanbrush.net/web/wp-content/uploads/edd/2020/02/urbanbrush-20200227023608426223.jpg',
+    date: '2022-01-07',
+    caption: 'Egg',
+    photographer: 'Jane Smith',
   },
   {
     id: 3,
-    imageUrl: "https://example.com/image3.jpg",
-    date: "2022-01-04",
-    caption: "My House",
-    photographer: "HyeWon Cho",
+    imageUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg',
+    date: '2022-01-04',
+    caption: 'Grape Fruit',
+    photographer: 'HyeWon Cho',
   },
   // ...
 ];

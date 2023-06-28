@@ -1,6 +1,6 @@
 // ImageFrame.js
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const FrameDiv = styled.div`
   position: fixed;
@@ -25,7 +25,7 @@ export default function ImageFrame({ imageUrl, caption }) {
   return (
     <FrameDiv>
       <StyledFrame>
-        <Image src={imageUrl} alt={caption} />
+        <Image src={imageUrl} alt={caption || '이미지 설정이 없습니다.'} />
       </StyledFrame>
     </FrameDiv>
   );

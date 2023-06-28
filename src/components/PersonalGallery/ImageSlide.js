@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import ImageFrame from "./ImageFrame";
-import TextFrame from "./TextFrame";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import ImageFrame from './ImageFrame';
+import TextFrame from './TextFrame';
 
 const LeftDiv = styled.div`
   position: fixed;
@@ -55,9 +55,10 @@ export default function ImageSlide() {
     try {
       const response = await fetch(`/api/images/${id}`);
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error('Network response was not ok');
       }
-      const { imageUrl, date, caption, photographer } = await response.json();
+      const responseData = await response.json();
+      const { imageUrl, date, caption, photographer } = responseData;
       setImageData({ id, imageUrl, date, caption, photographer });
     } catch (error) {
       console.log(error);
@@ -70,6 +71,7 @@ export default function ImageSlide() {
       setCurrentIndex(newIndex);
       fetchData(imageData[newIndex].id);
     }
+    console.log('Arrow1 is clicked.');
   };
 
   const handleArrow2Click = () => {
@@ -78,6 +80,7 @@ export default function ImageSlide() {
       setCurrentIndex(newIndex);
       fetchData(imageData[newIndex].id);
     }
+    console.log('Arrow2 is clicked.');
   };
 
   return (
