@@ -46,12 +46,12 @@ export default function SignUp() {
           ))}
           <S.ButtonContainer>
             {isFilled ? (
-              <S.NextButton to='SignUpNext' isFilled={isFilled}>
+              <S.NextButton to='/NickName' isFilled={isFilled}>
                 다음으로
               </S.NextButton>
             ) : (
               <S.NextButton
-                to='SignUpNext'
+                to='/NickName'
                 isFilled={isFilled}
                 onClick={(e) => e.preventDefault()}
               >
