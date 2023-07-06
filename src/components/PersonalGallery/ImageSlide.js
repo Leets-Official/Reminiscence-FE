@@ -53,12 +53,13 @@ export default function ImageSlide() {
 
   const fetchData = async (id) => {
     try {
-      const response = await fetch(`/api/images/${id}`);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+      const response = await fetch(`https://localhost:3000/api/images/1`);
+      // if (!response.ok) {
+      //   throw new Error('Network response was not ok');
+      // }
       const responseData = await response.json();
-      const { imageUrl, date, caption, photographer } = responseData;
+      console.log("This is ImageSlide's responseData " + responseData);
+      const { id, imageUrl, date, caption, photographer } = responseData;
       setImageData({ id, imageUrl, date, caption, photographer });
     } catch (error) {
       console.log(error);
@@ -69,7 +70,9 @@ export default function ImageSlide() {
     if (currentIndex > 0) {
       const newIndex = currentIndex - 1;
       setCurrentIndex(newIndex);
-      fetchData(imageData[newIndex].id);
+      const id = imageData[newIndex].id;
+      console.log('현재 인덱스에 해당하는 이미지의 아이디 = ' + id);
+      fetchData(id);
     }
     console.log('Arrow1 is clicked.');
   };
@@ -78,7 +81,9 @@ export default function ImageSlide() {
     if (currentIndex < imageData.length - 1) {
       const newIndex = currentIndex + 1;
       setCurrentIndex(newIndex);
-      fetchData(imageData[newIndex].id);
+      const id = imageData[newIndex].id;
+      console.log('현재 인덱스에 해당하는 이미지의 아이디 = ' + id);
+      fetchData(id);
     }
     console.log('Arrow2 is clicked.');
   };

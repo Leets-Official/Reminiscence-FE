@@ -1,6 +1,6 @@
 // HamburgerIcon.js
 import styled, { css } from 'styled-components';
-import React, { useState } from 'react';
+import React from 'react';
 
 const HamburgerBar = styled.div`
   width: 24px;
@@ -9,29 +9,25 @@ const HamburgerBar = styled.div`
   margin: 2.5px;
   transition: 300ms ease-in-out;
 
-  ${(props) =>
-    props.sideNav1 &&
-    css`
-      transform: translateY(5.5px);
-      opacity: 0;
-      transition: 150ms ease-in-out;
-    `};
+  &.sidenav1 {
+    transform: translateY(5.5px);
+    opacity: 0;
+    transition: 150ms ease-in-out;
+  }
 
-  ${(props) =>
-    props.sideNav2 &&
-    css`
-      transform: translateY(4.35px) rotateZ(45deg);
-      transition: 300ms ease-in-out;
-      background-color: black;
-    `};
+  &.sidenav2 {
+    transform: translateY(4.35px) rotateZ(45deg);
+    transition: 300ms ease-in-out;
+    background-color: black;
+    z-index: 2;
+  }
 
-  ${(props) =>
-    props.sideNav3 &&
-    css`
-      transform: translateY(-3.3px) rotateZ(-45deg);
-      transition: 300ms ease-in-out;
-      background-color: black;
-    `}
+  &.sidenav3 {
+    transform: translateY(-3.3px) rotateZ(-45deg);
+    transition: 300ms ease-in-out;
+    background-color: black;
+    z-index: 2;
+  }
 `;
 
 const Container = styled.div`
@@ -47,7 +43,7 @@ const Container = styled.div`
   z-index: 2;
 `;
 
-const Hamburger = ({ sideNav, setSideNav, onClick }) => {
+const HamburgerIcon = ({ sideNav, setSideNav, onClick }) => {
   const handleClick = () => {
     setSideNav(!sideNav);
     onClick();
@@ -55,11 +51,11 @@ const Hamburger = ({ sideNav, setSideNav, onClick }) => {
 
   return (
     <Container onClick={handleClick}>
-      <HamburgerBar sideNav1={sideNav} />
-      <HamburgerBar sideNav2={sideNav} />
-      <HamburgerBar sideNav3={sideNav} />
+      <HamburgerBar className={sideNav ? 'sidenav1' : ''} />
+      <HamburgerBar className={sideNav ? 'sidenav2' : ''} />
+      <HamburgerBar className={sideNav ? 'sidenav3' : ''} />
     </Container>
   );
 };
 
-export default Hamburger;
+export default HamburgerIcon;
