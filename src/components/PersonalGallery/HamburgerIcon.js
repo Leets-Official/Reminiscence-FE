@@ -1,5 +1,5 @@
 // HamburgerIcon.js
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import React from 'react';
 
 const HamburgerBar = styled.div`
@@ -41,19 +41,21 @@ const Container = styled.div`
   padding: 6px;
   cursor: pointer;
   z-index: 2;
+  pointer-events: ${(props) => (props.disableClick ? 'none' : 'auto')};
 `;
 
-const HamburgerIcon = ({ sideNav, setSideNav, onClick }) => {
+const HamburgerIcon = ({ isOpen, onClick, disableClick }) => {
   const handleClick = () => {
-    setSideNav(!sideNav);
-    onClick();
+    if (!disableClick) {
+      onClick();
+    }
   };
 
   return (
-    <Container onClick={handleClick}>
-      <HamburgerBar className={sideNav ? 'sidenav1' : ''} />
-      <HamburgerBar className={sideNav ? 'sidenav2' : ''} />
-      <HamburgerBar className={sideNav ? 'sidenav3' : ''} />
+    <Container disableClick={disableClick} onClick={handleClick}>
+      <HamburgerBar className={isOpen ? 'sidenav1' : ''} />
+      <HamburgerBar className={isOpen ? 'sidenav2' : ''} />
+      <HamburgerBar className={isOpen ? 'sidenav3' : ''} />
     </Container>
   );
 };

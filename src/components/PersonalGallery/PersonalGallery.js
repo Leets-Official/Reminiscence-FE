@@ -22,7 +22,7 @@ export default function PersonalGallery() {
     <div>
       <GlobalStyle />
       <ImageSlide />
-      <HamburgerIcon sideNav={sideNav} setSideNav={setSideNav} onClick={toggleMenu} />
+      <HamburgerIcon isOpen={sideNav} onClick={toggleMenu} />
       <HamburgerMenu isOpen={sideNav} />
     </div>
   );
