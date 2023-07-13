@@ -30,6 +30,7 @@ const Arrow1 = styled.div`
   border-top: none;
   border-right: none;
   border-bottom: 3px solid white;
+  opacity: ${(props) => (props.disabled ? '0.2' : '1')};
 `;
 
 const Arrow2 = styled.div`
@@ -42,6 +43,7 @@ const Arrow2 = styled.div`
   border-top: 3px solid white;
   border-right: 3px solid white;
   border-bottom: none;
+  opacity: ${(props) => (props.disabled ? '0.2' : '1')};
 `;
 
 export default function ImageSlide() {
@@ -70,10 +72,10 @@ export default function ImageSlide() {
   return (
     <div>
       <LeftDiv>
-        <Arrow1 onClick={handleArrow1Click} />
+        <Arrow1 onClick={handleArrow1Click} disabled={currentIndex === 0} />
       </LeftDiv>
       <RightDiv>
-        <Arrow2 onClick={handleArrow2Click} />
+        <Arrow2 onClick={handleArrow2Click} disabled={currentIndex === ImageData.length - 1} />
       </RightDiv>
       <ImageFrame imageUrl={currentImageData.imageUrl} />
       <TextFrame
