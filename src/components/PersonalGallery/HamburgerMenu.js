@@ -11,7 +11,7 @@ const MenuContainer = styled.div`
   width: 400px;
   height: 500px;
   background-color: white;
-  display: ${(props) => (props.isOpen ? 'block' : 'none')};
+  display: ${(props) => (props.isopenit ? 'block' : 'none')};
   z-index: 1;
   user-select: none;
 `;
@@ -114,7 +114,7 @@ const NoButtonText = styled.p`
   color: white;
 `;
 
-const HamburgerMenu = ({ isOpen }) => {
+const HamburgerMenu = ({ isopenit }) => {
   const [isPlaceholderVisible, setPlaceholderVisible] = useState(true);
   const [isAddPhotoVisible, setAddPhotoVisible] = useState(false);
 
@@ -132,7 +132,7 @@ const HamburgerMenu = ({ isOpen }) => {
 
   return (
     <>
-      <MenuContainer isOpen={isOpen}>
+      <MenuContainer isopenit={isopenit ? 1 : 0}>
         <MenuContentWrapper>
           <h3>로고</h3>
           <SearchContainer>

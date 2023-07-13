@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ImageFrame from './ImageFrame';
 import TextFrame from './TextFrame';
+import { ImageData } from '../../mocks/mockDatas/ImageData';
 
 const LeftDiv = styled.div`
   position: fixed;
@@ -44,49 +45,27 @@ const Arrow2 = styled.div`
 `;
 
 export default function ImageSlide() {
-  const [imageData, setImageData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    fetchData(1);
-  }, []);
-
-  const fetchData = async (id) => {
-    try {
-      const response = await fetch(`https://localhost:3000/api/images/1`);
-      // if (!response.ok) {
-      //   throw new Error('Network response was not ok');
-      // }
-      const responseData = await response.json();
-      console.log("This is ImageSlide's responseData " + responseData);
-      const { id, imageUrl, date, caption, photographer } = responseData;
-      setImageData({ id, imageUrl, date, caption, photographer });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleArrow1Click = () => {
     if (currentIndex > 0) {
       const newIndex = currentIndex - 1;
       setCurrentIndex(newIndex);
-      const id = imageData[newIndex].id;
-      console.log('현재 인덱스에 해당하는 이미지의 아이디 = ' + id);
-      fetchData(id);
+      console.log('next index = ' + newIndex);
     }
     console.log('Arrow1 is clicked.');
   };
 
   const handleArrow2Click = () => {
-    if (currentIndex < imageData.length - 1) {
+    if (currentIndex < ImageData.length - 1) {
       const newIndex = currentIndex + 1;
       setCurrentIndex(newIndex);
-      const id = imageData[newIndex].id;
-      console.log('현재 인덱스에 해당하는 이미지의 아이디 = ' + id);
-      fetchData(id);
+      console.log('next index = ' + newIndex);
     }
     console.log('Arrow2 is clicked.');
   };
+
+  const currentImageData = ImageData[currentIndex];
 
   return (
     <div>
@@ -96,8 +75,12 @@ export default function ImageSlide() {
       <RightDiv>
         <Arrow2 onClick={handleArrow2Click} />
       </RightDiv>
-      <ImageFrame imageUrl={imageData.imageUrl} caption={imageData.caption} />
-      <TextFrame date={imageData.date} photographer={imageData.photographer} />
+      <ImageFrame imageUrl={currentImageData.imageUrl} />
+      <TextFrame
+        date={currentImageData.date}
+        photographer={currentImageData.photographer}
+        caption={currentImageData.caption}
+      />
     </div>
   );
 }

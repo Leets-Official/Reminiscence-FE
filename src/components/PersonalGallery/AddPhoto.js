@@ -54,6 +54,7 @@ const FileUploadContainer = styled.div`
   align-items: center;
   border-radius: 5px;
   margin: 0 auto;
+  pointer-events: none;
 `;
 
 const FileUploadInput = styled.input`
@@ -98,6 +99,7 @@ const NextButton = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-right: 50px;
 `;
 
 const NextButtonText = styled.p`
@@ -134,11 +136,15 @@ const AddPhoto = ({ onClose }) => {
     }
   };
 
+  const handleCloseAddPhoto = () => {
+    onClose();
+  };
+
   return (
     <AddPhotoOverlay>
       <AddPhotoContainer>
         <AddPhotoSquare>
-          <CloseButton onClick={onClose}>
+          <CloseButton onClick={handleCloseAddPhoto}>
             <FaTimes />
           </CloseButton>
           <AddPhotoText>사진을 추가 하시겠습니까?</AddPhotoText>
@@ -148,7 +154,7 @@ const AddPhoto = ({ onClose }) => {
             ) : (
               <>
                 <FileUploadInput type="file" accept="image/*" onChange={handleFileUpload} />
-                <FileUploadText htmlFor="file-upload">파일을 선택하여 사진을 업로드하세요.</FileUploadText>
+                <FileUploadText htmlFor="file-upload">파일 선택</FileUploadText>
               </>
             )}
           </FileUploadContainer>
@@ -156,7 +162,7 @@ const AddPhoto = ({ onClose }) => {
             <NextButton>
               <NextButtonText>NEXT</NextButtonText>
             </NextButton>
-            <NoButton onClick={onClose}>
+            <NoButton onClick={handleCloseAddPhoto}>
               <NoButtonText>NO</NoButtonText>
             </NoButton>
           </ButtonContainer>

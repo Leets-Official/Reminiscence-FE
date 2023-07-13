@@ -44,7 +44,7 @@ const Container = styled.div`
   pointer-events: ${(props) => (props.disableClick ? 'none' : 'auto')};
 `;
 
-const HamburgerIcon = ({ isOpen, onClick, disableClick }) => {
+const HamburgerIcon = ({ isopen, onClick, disableClick }) => {
   const handleClick = () => {
     if (!disableClick) {
       onClick();
@@ -53,9 +53,9 @@ const HamburgerIcon = ({ isOpen, onClick, disableClick }) => {
 
   return (
     <Container disableClick={disableClick} onClick={handleClick}>
-      <HamburgerBar className={isOpen ? 'sidenav1' : ''} />
-      <HamburgerBar className={isOpen ? 'sidenav2' : ''} />
-      <HamburgerBar className={isOpen ? 'sidenav3' : ''} />
+      <HamburgerBar className={isopen ? 'sidenav1' : ''} />
+      <HamburgerBar className={isopen ? 'sidenav2' : ''} />
+      <HamburgerBar className={isopen ? 'sidenav3' : ''} />
     </Container>
   );
 };

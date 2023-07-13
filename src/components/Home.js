@@ -28,8 +28,6 @@ const LinkContainer = styled(Link)`
   color: black;
   cursor: pointer;
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 `;
 
 function Home() {
