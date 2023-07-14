@@ -21,3 +21,10 @@ export const LOGIN_FORMAT = [
     color: '#000',
   },
 ];
+
+export const INITAIL_STATE = {
+  email: '',
+  birthday: '',
+  searchId: '',
+  nickname: '',
+};
