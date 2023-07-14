@@ -28,12 +28,18 @@ export const Logo = styled.div`
   color: white;
 `;
 
-export const SignUpButton = styled(Link)`
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const LinkButton = styled(Link)`
   font-size: 24px;
   font-family: K2D, sans-serif;
   font-weight: 700;
 
-  width: 300px;
+  width: 230px;
   height: 71px;
 
   display: flex;
@@ -47,4 +53,6 @@ export const SignUpButton = styled(Link)`
   text-decoration: none;
   color: black;
   cursor: pointer;
+
+  margin-bottom: 20px;
 `;

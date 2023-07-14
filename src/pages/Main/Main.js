@@ -5,7 +5,10 @@ export default function Main() {
     <S.MainConatiner>
       <S.Section>
         <S.Logo>Reminiscence</S.Logo>
-        <S.SignUpButton to='/SignUp'>회원가입하기</S.SignUpButton>
+        <S.ButtonContainer>
+          <S.LinkButton to='/SignUp'>회원가입하기</S.LinkButton>
+          <S.LinkButton to='/Login'>로그인하기</S.LinkButton>
+        </S.ButtonContainer>
       </S.Section>
     </S.MainConatiner>
   );
