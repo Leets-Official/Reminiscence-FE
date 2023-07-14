@@ -25,6 +25,6 @@ export const LOGIN_FORMAT = [
 export const INITAIL_STATE = {
   email: '',
   birthday: '',
-  searchId: '',
+  id: '',
   nickname: '',
 };

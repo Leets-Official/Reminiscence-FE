@@ -2,17 +2,23 @@ import * as S from './NickName.styled';
 import { useState } from 'react';
 import { NICKNAME_FORMAT, TITLE } from '../../constants';
 import SignUpInput from '../../component/SignUpInput';
+import { useDispatch } from 'react-redux';
+import { register2 } from '../../store/registerSlice';
 
 export default function NickName() {
   const [id, setId] = useState('');
   const [nickname, setNickname] = useState('');
   const isFilled = id.length && nickname.length;
+  const dispatch = useDispatch();
 
   const handleIdChange = (e) => {
     setId(e.target.value);
   };
   const handleNicknameChange = (e) => {
     setNickname(e.target.value);
+  };
+  const saveInfo = () => {
+    dispatch(register2({ id, nickname }));
   };
 
   return (
@@ -34,13 +40,13 @@ export default function NickName() {
           ))}
           <S.ButtonContainer>
             {isFilled ? (
-              <S.NextButton to='/' isFilled={isFilled}>
+              <S.NextButton to='/' isfilled={isFilled} onClick={saveInfo}>
                 다음으로
               </S.NextButton>
             ) : (
               <S.NextButton
                 to='/'
-                isFilled={isFilled}
+                isfilled={isFilled}
                 onClick={(e) => e.preventDefault()}
               >
                 시작하기

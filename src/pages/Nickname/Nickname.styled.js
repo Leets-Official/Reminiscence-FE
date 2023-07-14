@@ -46,11 +46,11 @@ export const NextButton = styled(Link)`
 
   border-radius: 10px;
   border: 1px solid #f0f0f0;
-  background: ${({ isFilled }) => (isFilled ? '#fff0a4' : 'gray')};
+  background: ${({ isfilled }) => (isfilled ? '#fff0a4' : 'gray')};
 
   text-decoration: none;
   color: black;
-  cursor: ${({ isFilled }) => (isFilled ? 'pointer' : 'not-allowed')};
+  cursor: ${({ isfilled }) => (isfilled ? 'pointer' : 'not-allowed')};
 `;
 
 export const ButtonContainer = styled.div`

@@ -1,5 +1,5 @@
 import * as S from './Login.styled';
-import { LOGIN_FORMAT } from '../../constants/loginFormat';
+import { LOGIN_FORMAT } from '../../constants/login';
 
 export default function Login() {
   return (

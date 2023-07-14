@@ -2,23 +2,27 @@ import SignUpInput from '../../component/SignUpInput';
 import * as S from './SignUp.styled';
 import { SIGNUP_FORMAT, TITLE } from '../../constants';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { register1 } from '../../store/registerSlice';
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
   const isFilled = email.length && password.length && birthday.length;
+  const dispatch = useDispatch();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
-
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
-
   const handleBirthdayChange = (event) => {
     setBirthday(event.target.value);
+  };
+  const saveInfo = () => {
+    dispatch(register1({ email, password, birthday }));
   };
 
   return (
@@ -46,13 +50,17 @@ export default function SignUp() {
           ))}
           <S.ButtonContainer>
             {isFilled ? (
-              <S.NextButton to='/NickName' isFilled={isFilled}>
+              <S.NextButton
+                to='/nickname'
+                isfilled={isFilled}
+                onClick={saveInfo}
+              >
                 다음으로
               </S.NextButton>
             ) : (
               <S.NextButton
-                to='/NickName'
-                isFilled={isFilled}
+                to='/nickname'
+                isfilled={isFilled}
                 onClick={(e) => e.preventDefault()}
               >
                 다음으로
