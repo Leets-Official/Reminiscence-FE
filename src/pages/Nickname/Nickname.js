@@ -1,4 +1,4 @@
-import * as S from './Nickname.styled';
+import * as S from './NickName.styled';
 import { useState } from 'react';
 import { NICKNAME_FORMAT, TITLE } from '../../constants';
 import SignUpInput from '../../component/SignUpInput';

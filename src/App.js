@@ -1,10 +1,10 @@
 import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './GlobalStyle';
-import Main from './pages/Main';
-import SignUp from './pages/SignUp';
-import Nickname from './pages/Nickname';
-import Login from './pages/Login';
+import Main from './pages/main';
+import SignUp from './pages/signup';
+import Nickname from './pages/nickname';
+import Login from './pages/login';
 
 function App() {
   return (

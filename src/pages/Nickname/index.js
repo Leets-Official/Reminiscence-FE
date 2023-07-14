@@ -1,3 +1,3 @@
-import Nickname from './Nickname';
+import NickName from './Nickname';
 
-export default Nickname;
+export default NickName;
