@@ -5,6 +5,7 @@ export const ImageData = [
     date: '2023-01-05',
     caption: 'Soccer Game',
     photographer: 'John Doe',
+    sns: '@JD',
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ export const ImageData = [
     date: '2022-01-07',
     caption: 'Egg',
     photographer: 'Jane Smith',
+    sns: '@Jane_Smith',
   },
   {
     id: 3,
@@ -19,6 +21,16 @@ export const ImageData = [
     date: '2022-01-04',
     caption: 'Grape Fruit',
     photographer: 'HyeWon Cho',
+    sns: '@oellhwxn',
+  },
+  {
+    id: 4,
+    imageUrl:
+      'https://lh3.googleusercontent.com/-qr04lhdJdcU/WnnKx_ccyQI/AAAAAAAAKxE/Cte_Z-5_DVMgs5-Ax5PlVZJHVKkyvDBpACHMYCw/s0/19f7cce6686d117cadf7e8bd69ab6c16223f4ecf.jpg',
+    date: '2022-01-11',
+    caption: 'Lupi',
+    photographer: 'Pororo',
+    sns: '@Pororo',
   },
   // ...
 ];

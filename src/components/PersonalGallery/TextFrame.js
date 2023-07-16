@@ -29,7 +29,7 @@ const ContentsWrapper = styled.span`
   font-weight: normal;
 `;
 
-export default function TextFrame({ date, photographer, caption }) {
+export default function TextFrame({ date, photographer, caption, sns }) {
   return (
     <FrameText>
       <StyledText>
@@ -46,6 +46,11 @@ export default function TextFrame({ date, photographer, caption }) {
         <TextWrapper>
           <TitleWrapper>
             Caption : <ContentsWrapper>{caption}</ContentsWrapper>
+          </TitleWrapper>
+        </TextWrapper>
+        <TextWrapper>
+          <TitleWrapper>
+            SNS : <ContentsWrapper>{sns}</ContentsWrapper>
           </TitleWrapper>
         </TextWrapper>
       </StyledText>

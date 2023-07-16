@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
+import Cropper from 'react-easy-crop';
+import { generateId } from './function/generateId';
+import { getCurrentDate } from './function/getCurrentDate';
+import { addPhoto } from './function/addPhoto';
 
 const AddPhotoOverlay = styled.div`
   position: fixed;
@@ -47,14 +51,15 @@ const CloseButton = styled.div`
 
 const FileUploadContainer = styled.div`
   border: 1px solid #b1b1b1;
-  width: 500px;
-  height: 400px;
+  width: 264px;
+  height: 264px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
   margin: 0 auto;
   pointer-events: none;
+  position: relative;
 `;
 
 const FileUploadInput = styled.input`
@@ -65,6 +70,7 @@ const FileUploadInput = styled.input`
   left: 0;
   top: 0;
   cursor: pointer;
+  pointer-events: auto;
 `;
 
 const FileUploadText = styled.label`
@@ -82,6 +88,18 @@ const FileUploadText = styled.label`
 const PreviewImage = styled.img`
   max-width: 100%;
   max-height: 100%;
+`;
+
+const CroppedImageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`;
+
+const CroppedImage = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 `;
 
 const ButtonContainer = styled.div`
@@ -124,6 +142,11 @@ const NoButtonText = styled.p`
 
 const AddPhoto = ({ onClose }) => {
   const [previewImage, setPreviewImage] = useState('');
+  const [crop, setCrop] = useState({ x: 0, y: 0 }); // Crop options
+  const [croppedImage, setCroppedImage] = useState(null);
+  const [caption, setCaption] = useState('');
+  const [sns, setSns] = useState('');
+  const canvasRef = useRef();
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -132,7 +155,62 @@ const AddPhoto = ({ onClose }) => {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         setPreviewImage(reader.result);
+        setCroppedImage(null);
       };
+    }
+  };
+
+  const handleCropChange = (crop) => {
+    setCrop(crop);
+  };
+
+  const handleCropComplete = (_, croppedAreaPixels) => {
+    if (previewImage) {
+      const image = new Image();
+      image.src = previewImage;
+      image.onload = () => {
+        const canvas = canvasRef.current;
+        const context = canvas.getContext('2d');
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        const x = croppedAreaPixels.x * scaleX;
+        const y = croppedAreaPixels.y * scaleY;
+        const width = croppedAreaPixels.width * scaleX;
+        const height = croppedAreaPixels.height * scaleY;
+        canvas.width = width;
+        canvas.height = height;
+        context.drawImage(image, x, y, width, height, 0, 0, width, height);
+        const croppedImageUrl = canvas.toDataURL('image/jpeg');
+        setCroppedImage(croppedImageUrl);
+      };
+    }
+  };
+
+  const handleNextButtonClick = async () => {
+    if (!previewImage || !croppedImage) {
+      return;
+    }
+
+    const id = generateId();
+    const imageUrl = croppedImage;
+    const date = getCurrentDate();
+    const photographer = 'Hye Won';
+
+    const photoData = {
+      id,
+      imageUrl,
+      date,
+      caption,
+      photographer,
+      sns,
+    };
+
+    try {
+      await addPhoto(photoData);
+      console.log('Successfully added photo:', photoData);
+      onClose();
+    } catch (error) {
+      console.error('Failed to add photo:', error);
     }
   };
 
@@ -149,18 +227,39 @@ const AddPhoto = ({ onClose }) => {
           </CloseButton>
           <AddPhotoText>사진을 추가 하시겠습니까?</AddPhotoText>
           <FileUploadContainer>
-            {previewImage ? (
-              <PreviewImage src={previewImage} alt="Preview" />
+            {previewImage && !croppedImage ? (
+              <Cropper
+                image={previewImage}
+                crop={crop}
+                zoom={1}
+                aspect={1}
+                onCropChange={handleCropChange}
+                onCropComplete={handleCropComplete}
+              />
             ) : (
               <>
-                <FileUploadInput type="file" accept="image/*" onChange={handleFileUpload} />
-                <FileUploadText htmlFor="file-upload">파일 선택</FileUploadText>
+                {previewImage ? (
+                  <CroppedImageContainer>
+                    <CroppedImage src={croppedImage} alt="Cropped Preview" />
+                  </CroppedImageContainer>
+                ) : (
+                  <>
+                    <FileUploadInput type="file" accept="image/*" onChange={handleFileUpload} />
+                    <FileUploadText htmlFor="file-upload">파일 선택</FileUploadText>
+                  </>
+                )}
               </>
             )}
           </FileUploadContainer>
+          {croppedImage && (
+            <>
+              <input type="text" value={caption} onChange={(e) => setCaption(e.target.value)} placeholder="Caption" />
+              <input type="text" value={sns} onChange={(e) => setSns(e.target.value)} placeholder="SNS" />
+            </>
+          )}
           <ButtonContainer>
-            <NextButton>
-              <NextButtonText>NEXT</NextButtonText>
+            <NextButton onClick={handleNextButtonClick}>
+              <NextButtonText>{croppedImage ? 'YES' : 'NEXT'}</NextButtonText>
             </NextButton>
             <NoButton onClick={handleCloseAddPhoto}>
               <NoButtonText>NO</NoButtonText>
@@ -168,6 +267,7 @@ const AddPhoto = ({ onClose }) => {
           </ButtonContainer>
         </AddPhotoSquare>
       </AddPhotoContainer>
+      <canvas ref={canvasRef} style={{ display: 'none' }} />
     </AddPhotoOverlay>
   );
 };

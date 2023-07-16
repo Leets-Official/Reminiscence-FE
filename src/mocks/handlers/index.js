@@ -1,3 +1,4 @@
 import { imageGetHandlers } from './imageGetHandlers';
+import { imagePostHandlers } from './imagePostHandlers';
 
-export default [...imageGetHandlers];
+export default [...imageGetHandlers, ...imagePostHandlers];

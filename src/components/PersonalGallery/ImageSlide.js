@@ -1,8 +1,8 @@
+// ImageSlide.js
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ImageFrame from './ImageFrame';
 import TextFrame from './TextFrame';
-import { ImageData } from '../../mocks/mockDatas/ImageData';
 
 const LeftDiv = styled.div`
   position: fixed;
@@ -47,41 +47,81 @@ const Arrow2 = styled.div`
 `;
 
 export default function ImageSlide() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [currentImageData, setCurrentImageData] = useState({});
+  const [imageDataLength, setImageDataLength] = useState(0);
 
   const handleArrow1Click = () => {
-    if (currentIndex > 0) {
+    if (currentIndex > 1) {
       const newIndex = currentIndex - 1;
       setCurrentIndex(newIndex);
-      console.log('next index = ' + newIndex);
     }
-    console.log('Arrow1 is clicked.');
   };
 
   const handleArrow2Click = () => {
-    if (currentIndex < ImageData.length - 1) {
+    if (currentIndex < imageDataLength) {
       const newIndex = currentIndex + 1;
       setCurrentIndex(newIndex);
-      console.log('next index = ' + newIndex);
     }
-    console.log('Arrow2 is clicked.');
   };
 
-  const currentImageData = ImageData[currentIndex];
+  useEffect(() => {
+    // Fetch the image data length from the server
+    const fetchImageDataLength = async () => {
+      try {
+        const response = await fetch('https://localhost:3000/api/images/length');
+        if (response.ok) {
+          const data = await response.json();
+          setImageDataLength(data.length);
+        } else {
+          console.log('Failed to fetch image data length', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.log('Error occurred while fetching image data length', error);
+      }
+    };
+
+    fetchImageDataLength();
+  }, []);
+
+  useEffect(() => {
+    // Fetch the image data from the server using MSW
+    const fetchImageData = async () => {
+      try {
+        const id = currentIndex;
+        const response = await fetch(`https://localhost:3000/api/images/${id}`);
+        if (response.ok) {
+          const imageData = await response.json();
+          setCurrentImageData(imageData);
+        } else {
+          console.log('Failed to fetch image data', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.log('Error occurred while fetching image data', error);
+      }
+    };
+
+    fetchImageData();
+  }, [currentIndex]);
+
+  if (!currentImageData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
       <LeftDiv>
-        <Arrow1 onClick={handleArrow1Click} disabled={currentIndex === 0} />
+        <Arrow1 onClick={handleArrow1Click} disabled={currentIndex === 1} />
       </LeftDiv>
       <RightDiv>
-        <Arrow2 onClick={handleArrow2Click} disabled={currentIndex === ImageData.length - 1} />
+        <Arrow2 onClick={handleArrow2Click} disabled={currentIndex === imageDataLength} />
       </RightDiv>
       <ImageFrame imageUrl={currentImageData.imageUrl} />
       <TextFrame
         date={currentImageData.date}
         photographer={currentImageData.photographer}
         caption={currentImageData.caption}
+        sns={currentImageData.sns}
       />
     </div>
   );
