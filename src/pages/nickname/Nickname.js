@@ -1,6 +1,6 @@
 import * as S from './NickName.styled';
 import { useState } from 'react';
-import { NICKNAME_FORMAT, TITLE } from '../../constants';
+import { NICKNAME_FORMAT, TITLE, HOME } from '../../constants';
 import SignUpInput from '../../component/SignUpInput';
 import { useDispatch } from 'react-redux';
 import { register2 } from '../../store/registerSlice';
@@ -42,12 +42,12 @@ export default function NickName() {
           ))}
           <S.ButtonContainer>
             {isFilled ? (
-              <S.NextButton to='/' isfilled={isFilled} onClick={saveInfo}>
+              <S.NextButton to={HOME} isfilled={isFilled} onClick={saveInfo}>
                 다음으로
               </S.NextButton>
             ) : (
               <S.NextButton
-                to='/'
+                to={HOME}
                 isfilled={isFilled}
                 onClick={(e) => e.preventDefault()}
               >

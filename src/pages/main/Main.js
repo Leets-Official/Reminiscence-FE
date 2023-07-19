@@ -1,4 +1,5 @@
 import * as S from './Main.styled';
+import { SIGN_UP, LOGIN } from '../../constants';
 
 export default function Main() {
   return (
@@ -6,8 +7,8 @@ export default function Main() {
       <S.Section>
         <S.Logo>Reminiscence</S.Logo>
         <S.ButtonContainer>
-          <S.LinkButton to='/SignUp'>회원가입하기</S.LinkButton>
-          <S.LinkButton to='/Login'>로그인하기</S.LinkButton>
+          <S.LinkButton to={SIGN_UP}>회원가입하기</S.LinkButton>
+          <S.LinkButton to={LOGIN}>로그인하기</S.LinkButton>
         </S.ButtonContainer>
       </S.Section>
     </S.MainConatiner>
