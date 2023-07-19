@@ -1,13 +1,14 @@
-// PersonalGallery.js
 import React, { useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import ImageSlide from './ImageSlide';
 import HamburgerIcon from './HamburgerIcon';
 import HamburgerMenu from './HamburgerMenu';
+import LightingEffect from './LightingEffect';
 
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: black;
+    overflow:hidden;
   }
 `;
 
@@ -24,6 +25,7 @@ export default function PersonalGallery() {
       <ImageSlide />
       <HamburgerIcon isopen={sideNav} onClick={toggleMenu} />
       <HamburgerMenu isopenit={sideNav} />
+      <LightingEffect />
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { FaTimes } from 'react-icons/fa';
-import Cropper from 'react-easy-crop';
 import { generateId } from './function/generateId';
 import { getCurrentDate } from './function/getCurrentDate';
 import { addPhoto } from './function/addPhoto';
@@ -171,7 +170,6 @@ const InputField = styled.input`
 
 const AddPhoto = ({ onClose }) => {
   const [previewImage, setPreviewImage] = useState('');
-  const [crop, setCrop] = useState({ x: 0, y: 0 }); // Crop options
   const [croppedImage, setCroppedImage] = useState(null);
   const [caption, setCaption] = useState('');
   const [sns, setSns] = useState('');
@@ -189,10 +187,6 @@ const AddPhoto = ({ onClose }) => {
         setShowInputFields(false);
       };
     }
-  };
-
-  const handleCropChange = (crop) => {
-    setCrop(crop);
   };
 
   const handleNextButtonClick = async () => {
@@ -216,7 +210,7 @@ const AddPhoto = ({ onClose }) => {
 
     try {
       await addPhoto(photoData);
-      console.log('Successfully added photo:', photoData);
+      alert('Successfully added photo:', photoData);
       onClose();
     } catch (error) {
       console.error('Failed to add photo:', error);

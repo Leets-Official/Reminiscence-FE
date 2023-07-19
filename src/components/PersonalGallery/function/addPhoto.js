@@ -1,4 +1,3 @@
-// addPhoto.js
 import { ImageData } from '../../../mocks/mockDatas/ImageData';
 
 export const addPhoto = async (photoData) => {
@@ -17,8 +16,7 @@ export const addPhoto = async (photoData) => {
       throw new Error('사진 추가에 실패했습니다');
     }
 
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
     console.error(error);
     throw error;
