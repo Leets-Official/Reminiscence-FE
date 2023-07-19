@@ -32,14 +32,14 @@ const AddPhotoSquare = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 const AddPhotoText = styled.h1`
   font-size: 24px;
   margin-bottom: 20px;
   margin-top: 0;
-  align-self: flex-start;
+  font-family: 'K2D', sans-serif;
 `;
 
 const CloseButton = styled.div`
@@ -83,29 +83,28 @@ const FileUploadText = styled.label`
   color: black;
   text-align: center;
   cursor: pointer;
-`;
-
-const PreviewImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
+  font-family: 'K2D', sans-serif;
 `;
 
 const CroppedImageContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 264px;
+  height: 264px;
   overflow: hidden;
+  border-radius: 5px;
 `;
 
 const CroppedImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   margin-top: 40px;
+  margin-bottom: 5px;
 `;
 
 const NextButton = styled.div`
@@ -122,6 +121,7 @@ const NextButton = styled.div`
 
 const NextButtonText = styled.p`
   font-size: 16px;
+  font-family: 'K2D', sans-serif;
 `;
 
 const NoButton = styled.div`
@@ -138,6 +138,35 @@ const NoButton = styled.div`
 const NoButtonText = styled.p`
   font-size: 16px;
   color: white;
+  font-family: 'K2D', sans-serif;
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  height: 100%;
+`;
+
+const InputLabel = styled.label`
+  font-size: 18px;
+  margin-left: 50px;
+  margin-bottom: 7px;
+  align-self: flex-start;
+  font-family: 'K2D', sans-serif;
+  font-weight: bold;
+`;
+
+const InputField = styled.input`
+  width: 80%;
+  height: 40px;
+  border: 1px solid #b1b1b1;
+  border-radius: 3px;
+  padding: 5px;
+  margin-bottom: 20px;
+  font-family: 'K2D', sans-serif;
 `;
 
 const AddPhoto = ({ onClose }) => {
@@ -146,6 +175,7 @@ const AddPhoto = ({ onClose }) => {
   const [croppedImage, setCroppedImage] = useState(null);
   const [caption, setCaption] = useState('');
   const [sns, setSns] = useState('');
+  const [showInputFields, setShowInputFields] = useState(false);
   const canvasRef = useRef();
 
   const handleFileUpload = (event) => {
@@ -155,35 +185,14 @@ const AddPhoto = ({ onClose }) => {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         setPreviewImage(reader.result);
-        setCroppedImage(null);
+        setCroppedImage(reader.result);
+        setShowInputFields(false);
       };
     }
   };
 
   const handleCropChange = (crop) => {
     setCrop(crop);
-  };
-
-  const handleCropComplete = (_, croppedAreaPixels) => {
-    if (previewImage) {
-      const image = new Image();
-      image.src = previewImage;
-      image.onload = () => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
-        const scaleX = image.naturalWidth / image.width;
-        const scaleY = image.naturalHeight / image.height;
-        const x = croppedAreaPixels.x * scaleX;
-        const y = croppedAreaPixels.y * scaleY;
-        const width = croppedAreaPixels.width * scaleX;
-        const height = croppedAreaPixels.height * scaleY;
-        canvas.width = width;
-        canvas.height = height;
-        context.drawImage(image, x, y, width, height, 0, 0, width, height);
-        const croppedImageUrl = canvas.toDataURL('image/jpeg');
-        setCroppedImage(croppedImageUrl);
-      };
-    }
   };
 
   const handleNextButtonClick = async () => {
@@ -225,46 +234,73 @@ const AddPhoto = ({ onClose }) => {
           <CloseButton onClick={handleCloseAddPhoto}>
             <FaTimes />
           </CloseButton>
-          <AddPhotoText>사진을 추가 하시겠습니까?</AddPhotoText>
-          <FileUploadContainer>
-            {previewImage && !croppedImage ? (
-              <Cropper
-                image={previewImage}
-                crop={crop}
-                zoom={1}
-                aspect={1}
-                onCropChange={handleCropChange}
-                onCropComplete={handleCropComplete}
-              />
-            ) : (
-              <>
-                {previewImage ? (
-                  <CroppedImageContainer>
-                    <CroppedImage src={croppedImage} alt="Cropped Preview" />
-                  </CroppedImageContainer>
-                ) : (
-                  <>
-                    <FileUploadInput type="file" accept="image/*" onChange={handleFileUpload} />
-                    <FileUploadText htmlFor="file-upload">파일 선택</FileUploadText>
-                  </>
-                )}
-              </>
-            )}
-          </FileUploadContainer>
-          {croppedImage && (
+          {!previewImage && !showInputFields ? (
             <>
-              <input type="text" value={caption} onChange={(e) => setCaption(e.target.value)} placeholder="Caption" />
-              <input type="text" value={sns} onChange={(e) => setSns(e.target.value)} placeholder="SNS" />
+              <AddPhotoText>사진을 추가하시겠습니까?</AddPhotoText>
+              <FileUploadContainer>
+                <FileUploadInput type="file" accept="image/*" onChange={handleFileUpload} />
+                <FileUploadText htmlFor="file-upload">파일 선택</FileUploadText>
+              </FileUploadContainer>
+              <ButtonContainer>
+                <NextButton disabled>
+                  <NextButtonText>NEXT</NextButtonText>
+                </NextButton>
+                <NoButton onClick={handleCloseAddPhoto}>
+                  <NoButtonText>NO</NoButtonText>
+                </NoButton>
+              </ButtonContainer>
+            </>
+          ) : (
+            <>
+              {previewImage && !showInputFields && (
+                <>
+                  <AddPhotoText>사진을 추가하시겠습니까?</AddPhotoText>
+                  <FileUploadContainer>
+                    <CroppedImageContainer>
+                      <CroppedImage src={croppedImage} alt="Cropped Preview" />
+                    </CroppedImageContainer>
+                  </FileUploadContainer>
+                  <ButtonContainer>
+                    <NextButton onClick={() => setShowInputFields(true)}>
+                      <NextButtonText>NEXT</NextButtonText>
+                    </NextButton>
+                    <NoButton onClick={handleCloseAddPhoto}>
+                      <NoButtonText>NO</NoButtonText>
+                    </NoButton>
+                  </ButtonContainer>
+                </>
+              )}
+              {croppedImage && showInputFields && (
+                <>
+                  <AddPhotoText>사진을 추가하시겠습니까?</AddPhotoText>
+                  <InputContainer>
+                    <InputLabel>Caption</InputLabel>
+                    <InputField
+                      type="text"
+                      value={caption}
+                      onChange={(e) => setCaption(e.target.value)}
+                      placeholder="사진에 대한 설명을 해주세요"
+                    />
+                    <InputLabel>SNS</InputLabel>
+                    <InputField
+                      type="text"
+                      value={sns}
+                      onChange={(e) => setSns(e.target.value)}
+                      placeholder="URL을 입력하세요"
+                    />
+                    <ButtonContainer>
+                      <NextButton onClick={handleNextButtonClick}>
+                        <NextButtonText>YES</NextButtonText>
+                      </NextButton>
+                      <NoButton onClick={handleCloseAddPhoto}>
+                        <NoButtonText>NO</NoButtonText>
+                      </NoButton>
+                    </ButtonContainer>
+                  </InputContainer>
+                </>
+              )}
             </>
           )}
-          <ButtonContainer>
-            <NextButton onClick={handleNextButtonClick}>
-              <NextButtonText>{croppedImage ? 'YES' : 'NEXT'}</NextButtonText>
-            </NextButton>
-            <NoButton onClick={handleCloseAddPhoto}>
-              <NoButtonText>NO</NoButtonText>
-            </NoButton>
-          </ButtonContainer>
         </AddPhotoSquare>
       </AddPhotoContainer>
       <canvas ref={canvasRef} style={{ display: 'none' }} />
