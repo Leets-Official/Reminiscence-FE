@@ -1,24 +1,11 @@
+import { TITLE } from './signUpFormat';
+
 export const LOGIN_FORMAT = [
+  { title: TITLE.EMAIL, type: 'email', placeholder: 'E-mail을 입력해주세요.' },
   {
-    type: 'NAVER',
-    placeHolder: '으로 로그인하기',
-    imageSrc: '../../assets/images/NAVER_LOGIN.svg',
-    background: '#5AC466',
-    color: '#FFFFFF',
-  },
-  {
-    type: 'GOOGLE',
-    placeHolder: '으로 로그인하기',
-    imageSrc: '../assets/images/GOOGLE_LOGIN.svg',
-    background: '#FFF',
-    color: '#000',
-  },
-  {
-    type: 'KAKAO',
-    placeHolder: '으로 로그인하기',
-    imageSrc: '../assets/images/KAKAO_LOGIN.svg',
-    background: '#FFE142',
-    color: '#000',
+    title: TITLE.PASSWORD,
+    type: 'password',
+    placeholder: '비밀번호를 입력해주세요.',
   },
 ];
 
