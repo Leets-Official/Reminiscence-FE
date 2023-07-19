@@ -8,7 +8,7 @@ const userSlice = createSlice({
   initialState: INITAIL_STATE,
   reducers: {
     login: (state, action) => {
-      return { ...action.payload };
+      return { ...state, ...action.payload };
     },
     logout: (state, action) => {
       return { ...INITAIL_STATE };
