@@ -18,6 +18,8 @@ export default function NickName() {
     setNickname(e.target.value);
   };
   const saveInfo = () => {
+    // TODO: API 연결
+    // 회원가입 시에는 전역 상태 데이터 초기화 => 로그인 시 다시 fetch
     dispatch(register2({ id, nickname }));
   };
 

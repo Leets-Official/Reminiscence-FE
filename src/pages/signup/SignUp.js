@@ -1,6 +1,6 @@
 import SignUpInput from '../../component/SignUpInput';
 import * as S from './SignUp.styled';
-import { SIGNUP_FORMAT, TITLE } from '../../constants';
+import { SIGNUP_FORMAT, TITLE, NICKNAME } from '../../constants';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register1 } from '../../store/registerSlice';
@@ -51,7 +51,7 @@ export default function SignUp() {
           <S.ButtonContainer>
             {isFilled ? (
               <S.NextButton
-                to='/nickname'
+                to={NICKNAME}
                 isfilled={isFilled}
                 onClick={saveInfo}
               >
@@ -59,7 +59,7 @@ export default function SignUp() {
               </S.NextButton>
             ) : (
               <S.NextButton
-                to='/nickname'
+                to={NICKNAME}
                 isfilled={isFilled}
                 onClick={(e) => e.preventDefault()}
               >

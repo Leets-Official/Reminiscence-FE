@@ -32,6 +32,8 @@ export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  margin-top: 100px;
 `;
 
 export const LinkButton = styled(Link)`
