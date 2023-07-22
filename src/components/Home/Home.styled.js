@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const HomeStyle = styled.div`
+export const HomeStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   user-select: none;
 `;
 
-const LinkContainer = styled(Link)`
+export const LinkContainer = styled(Link)`
   font-size: 24px;
   font-weight: 700;
 
@@ -29,13 +28,3 @@ const LinkContainer = styled(Link)`
   cursor: pointer;
   position: relative;
 `;
-
-function Home() {
-  return (
-    <HomeStyle>
-      <LinkContainer to="/api/images/1">Personal Gallery로 이동</LinkContainer>
-    </HomeStyle>
-  );
-}
-
-export default Home;

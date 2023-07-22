@@ -1,4 +1,4 @@
-import { ImageData } from '../../../mocks/mockDatas/ImageData';
+import { ImageData } from '../../../../../mocks/mockDatas/ImageData';
 
 export const generateId = () => {
   const imageDataLength = ImageData.length;

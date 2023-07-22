@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import React from 'react';
 
-const HamburgerBar = styled.div`
+export const HamburgerBar = styled.div`
   width: 24px;
   height: 3px;
   background-color: white;
@@ -29,7 +28,7 @@ const HamburgerBar = styled.div`
   }
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,21 +41,3 @@ const Container = styled.div`
   z-index: 2;
   pointer-events: ${(props) => (props.disableClick ? 'none' : 'auto')};
 `;
-
-const HamburgerIcon = ({ isopen, onClick, disableClick }) => {
-  const handleClick = () => {
-    if (!disableClick) {
-      onClick();
-    }
-  };
-
-  return (
-    <Container disableClick={disableClick} onClick={handleClick}>
-      <HamburgerBar className={isopen ? 'sidenav1' : ''} />
-      <HamburgerBar className={isopen ? 'sidenav2' : ''} />
-      <HamburgerBar className={isopen ? 'sidenav3' : ''} />
-    </Container>
-  );
-};
-
-export default HamburgerIcon;

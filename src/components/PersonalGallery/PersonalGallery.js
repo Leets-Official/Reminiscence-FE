@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
-import { createGlobalStyle } from 'styled-components';
-import ImageSlide from './ImageSlide';
-import HamburgerIcon from './HamburgerIcon';
-import HamburgerMenu from './HamburgerMenu';
-import LightingEffect from './LightingEffect';
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: black;
-    overflow:hidden;
-  }
-`;
+import ImageSlide from './Components/ImageSlide';
+import HamburgerIcon from './Components/HamburgerIcon';
+import HamburgerMenu from './Components/HamburgerMenu';
+import LightingEffect from './Components/LightingEffect';
+import * as S from './PersonalGallery.styled';
 
 export default function PersonalGallery() {
   const [sideNav, setSideNav] = useState(false);
@@ -21,7 +14,7 @@ export default function PersonalGallery() {
 
   return (
     <div>
-      <GlobalStyle />
+      <S.GlobalStyle />
       <ImageSlide />
       <HamburgerIcon isopen={sideNav} onClick={toggleMenu} />
       <HamburgerMenu isopenit={sideNav} />

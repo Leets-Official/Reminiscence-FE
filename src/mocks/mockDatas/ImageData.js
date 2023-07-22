@@ -32,5 +32,4 @@ export const ImageData = [
     photographer: 'Pororo',
     sns: '@Pororo',
   },
-  // ...
 ];
