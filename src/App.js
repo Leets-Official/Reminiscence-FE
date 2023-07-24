@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import GlobalStyle from './GlobalStyle';
+import Gallery from './pages/Gallery';
+import { GlobalStyle } from './styles/Global-styles';
 import Main from './pages/main';
 import SignUp from './pages/signup';
 import Nickname from './pages/nickname';
@@ -12,6 +13,7 @@ function App() {
       <GlobalStyle />
       <Router>
         <Routes>
+          <Route path="/gallery" element={<Gallery />}></Route>
           <Route path='/' element={<Main />}></Route>
           <Route path='/SignUp' element={<SignUp />}></Route>
           <Route path='/Nickname' element={<Nickname />}></Route>
