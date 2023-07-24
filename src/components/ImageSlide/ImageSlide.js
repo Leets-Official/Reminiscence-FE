@@ -22,38 +22,38 @@ export default function ImageSlide() {
     }
   };
 
-  useEffect(() => {
-    const fetchImageDataLength = async () => {
-      try {
-        const response = await fetch('https://localhost:3000/images/length');
-        if (response.ok) {
-          const data = await response.json();
-          setImageDataLength(data.length);
-        }
-      } catch (error) {
-        throw Error;
-      }
-    };
+  // useEffect(() => {
+  //   const fetchImageDataLength = async () => {
+  //     try {
+  //       const response = await fetch('https://localhost:3000/images/length');
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         setImageDataLength(data.length);
+  //       }
+  //     } catch (error) {
+  //       throw Error;
+  //     }
+  //   };
 
-    fetchImageDataLength();
-  }, []);
+  //   fetchImageDataLength();
+  // }, []);
 
-  useEffect(() => {
-    const fetchImageData = async () => {
-      try {
-        const id = currentIndex;
-        const response = await fetch(`https://localhost:3000/images/${id}`);
-        if (response.ok) {
-          const imageData = await response.json();
-          setCurrentImageData(imageData);
-        }
-      } catch (error) {
-        throw Error('이미지 데이터를 불러오는 데 실패했습니다');
-      }
-    };
+  // useEffect(() => {
+  //   const fetchImageData = async () => {
+  //     try {
+  //       const id = currentIndex;
+  //       const response = await fetch(`https://localhost:3000/images/${id}`);
+  //       if (response.ok) {
+  //         const imageData = await response.json();
+  //         setCurrentImageData(imageData);
+  //       }
+  //     } catch (error) {
+  //       throw Error('이미지 데이터를 불러오는 데 실패했습니다');
+  //     }
+  //   };
 
-    fetchImageData();
-  }, [currentIndex]);
+  //   fetchImageData();
+  // }, [currentIndex]);
 
   if (!currentImageData) {
     return <div>Loading...</div>;

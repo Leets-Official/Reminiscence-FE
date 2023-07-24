@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Gallery from './pages/Gallery';
+import Gallery from './pages/gallery';
 import GlobalStyle from './styles/Global-styles';
 import Main from './pages/main';
 import SignUp from './pages/signup';

@@ -20,9 +20,9 @@ const HamburgerMenu = ({ isopen }) => {
 
   return (
     <>
-      <S.MenuContainer isopenit={isopenit ? 1 : 0}>
+      <S.MenuContainer isopen={isopen ? 1 : 0}>
         <S.MenuContentWrapper>
-          <h3>로고</h3>
+          <S.LogoContainer to="/gallery">Reminiscence</S.LogoContainer>
           <S.SearchContainer>
             <S.SearchInput
               type="text"
@@ -31,11 +31,11 @@ const HamburgerMenu = ({ isopen }) => {
             />
             <S.SearchIcon />
           </S.SearchContainer>
-          <p onClick={handleAddPhotoClick} style={{ cursor: 'pointer' }}>
-            사진 추가
-          </p>
-          <p>사진 삭제</p>
-          <p>로그아웃</p>
+          <S.TextContainer onClick={handleAddPhotoClick} style={{ cursor: 'pointer' }}>
+            Add Picture
+          </S.TextContainer>
+          <S.TextContainer>Delete Picture</S.TextContainer>
+          <S.LogoutContainer>Log Out</S.LogoutContainer>
         </S.MenuContentWrapper>
       </S.MenuContainer>
       {isAddPhotoVisible && <AddPhoto onClose={handleCloseAddPhoto} />}

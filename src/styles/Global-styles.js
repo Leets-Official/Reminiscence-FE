@@ -4,7 +4,6 @@ const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
-    background: black;
 
     @font-face {
     font-family: 'Pacifico', cursive;
@@ -17,6 +16,9 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
     src: url('./assets/Fonts/K2D-Bold.ttf') format('ttf');
     }
+  }
+  body{
+    background-color: black;
   }
 `;
 
