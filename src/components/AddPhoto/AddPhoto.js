@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react';
 import * as S from './AddPhoto.styled';
 import { FaTimes } from 'react-icons/fa';
-import { generateId } from './function/generateId';
-import { getCurrentDate } from './function/getCurrentDate';
-import { addPhoto } from './function/addPhoto';
+import { getCurrentDate } from '../../util/getCurrentDate';
+import { addPhoto } from '../../util/addPhoto';
 
 const AddPhoto = ({ onClose }) => {
   const [previewImage, setPreviewImage] = useState('');
@@ -31,7 +30,6 @@ const AddPhoto = ({ onClose }) => {
       return;
     }
 
-    //const id = generateId();
     const imageUrl = croppedImage;
     const date = getCurrentDate();
     const photographer = 'Hye Won';
@@ -46,10 +44,10 @@ const AddPhoto = ({ onClose }) => {
 
     try {
       await addPhoto(photoData);
-      alert('Successfully added photo:', photoData);
+      alert('사진이 성공적으로 추가되었습니다.');
       onClose();
     } catch (error) {
-      console.error('Failed to add photo:', error);
+      throw Error;
     }
   };
 

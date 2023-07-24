@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AddPhoto from '../AddPhoto';
+import AddPhoto from '../../AddPhoto';
 import * as S from './HamburgerMenu.styled';
 
 const HamburgerMenu = ({ isopenit }) => {

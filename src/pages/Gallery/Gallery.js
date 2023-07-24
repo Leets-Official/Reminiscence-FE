@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import ImageSlide from './Components/ImageSlide';
-import HamburgerIcon from './Components/HamburgerIcon';
-import HamburgerMenu from './Components/HamburgerMenu';
-import LightingEffect from './Components/LightingEffect';
-import * as S from './PersonalGallery.styled';
+import ImageSlide from '../../components/ImageSlide';
+import HamburgerIcon from '../../components/Hamburger/HamburgerIcon';
+import HamburgerMenu from '../../components/Hamburger/HamburgerMenu';
+import LightingEffect from '../../components/LightingEffect';
 
-export default function PersonalGallery() {
+export default function Gallery() {
   const [sideNav, setSideNav] = useState(false);
 
   const toggleMenu = () => {
@@ -14,7 +13,6 @@ export default function PersonalGallery() {
 
   return (
     <div>
-      <S.GlobalStyle />
       <ImageSlide />
       <HamburgerIcon isopen={sideNav} onClick={toggleMenu} />
       <HamburgerMenu isopenit={sideNav} />

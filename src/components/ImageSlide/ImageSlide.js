@@ -29,11 +29,9 @@ export default function ImageSlide() {
         if (response.ok) {
           const data = await response.json();
           setImageDataLength(data.length);
-        } else {
-          console.log('Failed to fetch image data length', response.status, response.statusText);
         }
       } catch (error) {
-        console.log('Error occurred while fetching image data length', error);
+        throw Error;
       }
     };
 
@@ -48,11 +46,9 @@ export default function ImageSlide() {
         if (response.ok) {
           const imageData = await response.json();
           setCurrentImageData(imageData);
-        } else {
-          console.log('이미지 데이터를 불러오는 데 실패했습니다', response.status, response.statusText);
         }
       } catch (error) {
-        console.log('이미지 데이터를 불러오는 도중 오류가 발생했습니다', error);
+        throw Error('이미지 데이터를 불러오는 데 실패했습니다');
       }
     };
 
