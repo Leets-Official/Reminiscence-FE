@@ -6,6 +6,7 @@ export const ImageData = [
     caption: 'Soccer Game',
     photographer: 'John Doe',
     sns: '@JD',
+    light: '#9ea20e',
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const ImageData = [
     caption: 'Egg',
     photographer: 'Jane Smith',
     sns: '@Jane_Smith',
+    light: '#9ea20e',
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ export const ImageData = [
     caption: 'Grape Fruit',
     photographer: 'HyeWon Cho',
     sns: '@oellhwxn',
+    light: '#9ea20e',
   },
   {
     id: 4,
@@ -31,5 +34,6 @@ export const ImageData = [
     caption: 'Lupi',
     photographer: 'Pororo',
     sns: '@Pororo',
+    light: '#9ea20e',
   },
 ];

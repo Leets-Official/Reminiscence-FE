@@ -31,13 +31,12 @@ const AddPhoto = ({ onClose }) => {
       return;
     }
 
-    const id = generateId();
+    //const id = generateId();
     const imageUrl = croppedImage;
     const date = getCurrentDate();
     const photographer = 'Hye Won';
 
     const photoData = {
-      id,
       imageUrl,
       date,
       caption,

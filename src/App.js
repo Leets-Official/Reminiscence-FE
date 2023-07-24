@@ -10,7 +10,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/images/1" element={<PersonalGallery />}></Route>
+          <Route path="/Personal" element={<PersonalGallery />}></Route>
         </Routes>
       </Router>
     </Fragment>
