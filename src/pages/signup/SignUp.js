@@ -1,11 +1,11 @@
-import SignUpInput from '../../component/SignUpInput';
+import SignUpInput from '../../components/SignUpInput';
 import * as S from './SignUp.styled';
 import { SIGNUP_FORMAT, TITLE, NICKNAME } from '../../constants';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { register1 } from '../../store/registerSlice';
 
-export default function SignUp() {
+function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [birthday, setBirthday] = useState('');
@@ -36,11 +36,7 @@ export default function SignUp() {
               title={title}
               type={type}
               placeholder={placeholder}
-              value={
-                (title === TITLE.EMAIL && email) ||
-                (title === TITLE.PASSWORD && password) ||
-                birthday
-              }
+              value={(title === TITLE.EMAIL && email) || (title === TITLE.PASSWORD && password) || birthday}
               onChange={
                 (title === TITLE.EMAIL && handleEmailChange) ||
                 (title === TITLE.PASSWORD && handlePasswordChange) ||
@@ -50,19 +46,11 @@ export default function SignUp() {
           ))}
           <S.ButtonContainer>
             {isFilled ? (
-              <S.NextButton
-                to={NICKNAME}
-                isfilled={isFilled}
-                onClick={saveInfo}
-              >
+              <S.NextButton to={NICKNAME} isfilled={isFilled} onClick={saveInfo}>
                 다음으로
               </S.NextButton>
             ) : (
-              <S.NextButton
-                to={NICKNAME}
-                isfilled={isFilled}
-                onClick={(e) => e.preventDefault()}
-              >
+              <S.NextButton to={NICKNAME} isfilled={isFilled} onClick={(e) => e.preventDefault()}>
                 다음으로
               </S.NextButton>
             )}
@@ -72,3 +60,5 @@ export default function SignUp() {
     </S.MainConatiner>
   );
 }
+
+export default SignUp;

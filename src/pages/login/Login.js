@@ -1,12 +1,12 @@
 import * as S from './Login.styled';
 import { LOGIN_FORMAT, TITLE } from '../../constants';
-import SignUpInput from '../../component/SignUpInput';
+import SignUpInput from '../../components/SignUpInput';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/userSlice';
-import { HOME } from '../../constants/route';
+import { GALLERY } from '../../constants/route';
 
-export default function Login() {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const isFilled = email.length && password.length;
@@ -35,22 +35,16 @@ export default function Login() {
               type={type}
               placeholder={placeholder}
               value={title === TITLE.EMAIL ? email : password}
-              onChange={
-                title === TITLE.EMAIL ? handleEmailChange : handlePasswordChange
-              }
+              onChange={title === TITLE.EMAIL ? handleEmailChange : handlePasswordChange}
             />
           ))}
           <S.ButtonContainer>
             {isFilled ? (
-              <S.NextButton to={HOME} isfilled={isFilled} onClick={saveInfo}>
+              <S.NextButton to={GALLERY} isfilled={isFilled} onClick={saveInfo}>
                 로그인
               </S.NextButton>
             ) : (
-              <S.NextButton
-                to={HOME}
-                isfilled={isFilled}
-                onClick={(e) => e.preventDefault()}
-              >
+              <S.NextButton to={GALLERY} isfilled={isFilled} onClick={(e) => e.preventDefault()}>
                 로그인
               </S.NextButton>
             )}
@@ -60,3 +54,5 @@ export default function Login() {
     </S.MainConatiner>
   );
 }
+
+export default Login;

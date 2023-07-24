@@ -1,7 +1,7 @@
 import * as S from './Main.styled';
 import { SIGN_UP, LOGIN } from '../../constants';
 
-export default function Main() {
+function Main() {
   return (
     <S.MainConatiner>
       <S.Section>
@@ -14,3 +14,5 @@ export default function Main() {
     </S.MainConatiner>
   );
 }
+
+export default Main;

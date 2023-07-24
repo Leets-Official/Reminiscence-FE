@@ -4,7 +4,7 @@ import HamburgerIcon from '../../components/Hamburger/HamburgerIcon';
 import HamburgerMenu from '../../components/Hamburger/HamburgerMenu';
 import LightingEffect from '../../components/LightingEffect';
 
-export default function Gallery() {
+function Gallery() {
   const [sideNav, setSideNav] = useState(false);
 
   const toggleMenu = () => {
@@ -15,8 +15,10 @@ export default function Gallery() {
     <div>
       <ImageSlide />
       <HamburgerIcon isopen={sideNav} onClick={toggleMenu} />
-      <HamburgerMenu isopenit={sideNav} />
+      <HamburgerMenu isopen={sideNav} />
       <LightingEffect />
     </div>
   );
 }
+
+export default Gallery;

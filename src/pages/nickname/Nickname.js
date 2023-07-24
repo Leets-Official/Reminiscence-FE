@@ -1,11 +1,11 @@
 import * as S from './NickName.styled';
 import { useState } from 'react';
 import { NICKNAME_FORMAT, TITLE, HOME } from '../../constants';
-import SignUpInput from '../../component/SignUpInput';
+import SignUpInput from '../../components/SignUpInput';
 import { useDispatch } from 'react-redux';
 import { register2 } from '../../store/registerSlice';
 
-export default function NickName() {
+function NickName() {
   const [id, setId] = useState('');
   const [nickname, setNickname] = useState('');
   const isFilled = id.length && nickname.length;
@@ -35,9 +35,7 @@ export default function NickName() {
               type={type}
               placeholder={placeholder}
               value={title === TITLE.ID ? id : nickname}
-              onChange={
-                title === TITLE.ID ? handleIdChange : handleNicknameChange
-              }
+              onChange={title === TITLE.ID ? handleIdChange : handleNicknameChange}
             />
           ))}
           <S.ButtonContainer>
@@ -46,11 +44,7 @@ export default function NickName() {
                 다음으로
               </S.NextButton>
             ) : (
-              <S.NextButton
-                to={HOME}
-                isfilled={isFilled}
-                onClick={(e) => e.preventDefault()}
-              >
+              <S.NextButton to={HOME} isfilled={isFilled} onClick={(e) => e.preventDefault()}>
                 시작하기
               </S.NextButton>
             )}
@@ -60,3 +54,5 @@ export default function NickName() {
     </S.MainConatiner>
   );
 }
+
+export default NickName;
