@@ -3,7 +3,7 @@ import { ACCESS_TOKEN, HTTP_METHODS } from '../constants';
 import { LocalStorage } from '../util/LocalStorage';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://3.105.103.8:8080',
+  baseURL: 'http://ec2-3-105-103-8.ap-southeast-2.compute.amazonaws.com:8080',
   timeout: 10000,
   headers: { 'Content-Type': 'application/json' },
 });
