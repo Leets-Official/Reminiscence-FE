@@ -13,16 +13,8 @@ const registerSlice = createSlice({
         birthday,
       };
     },
-    register2: (state, action) => {
-      const { id, nickname } = action.payload;
-      return {
-        ...state,
-        id,
-        nickname,
-      };
-    },
   },
 });
 
-export const { register1, register2 } = registerSlice.actions;
+export const { register1 } = registerSlice.actions;
 export default registerSlice.reducer;
