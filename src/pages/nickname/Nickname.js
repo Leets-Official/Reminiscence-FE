@@ -1,15 +1,15 @@
 import * as S from './NickName.styled';
 import { useState } from 'react';
-import { NICKNAME_FORMAT, TITLE, HOME } from '../../constants';
+import { NICKNAME_FORMAT, TITLE, HOME, LOGIN, USER } from '../../constants';
 import SignUpInput from '../../components/SignUpInput';
-import { useDispatch } from 'react-redux';
-import { register2 } from '../../store/registerSlice';
+import { useSelector } from 'react-redux';
+import * as api from '../../api';
 
 function NickName() {
   const [id, setId] = useState('');
   const [nickname, setNickname] = useState('');
   const isFilled = id.length && nickname.length;
-  const dispatch = useDispatch();
+  const { birthday, password, email } = useSelector((state) => state.register);
 
   const handleIdChange = (e) => {
     setId(e.target.value);
@@ -18,9 +18,10 @@ function NickName() {
     setNickname(e.target.value);
   };
   const saveInfo = () => {
-    // TODO: API 연결
-    // 회원가입 시에는 전역 상태 데이터 초기화 => 로그인 시 다시 fetch
-    dispatch(register2({ id, nickname }));
+    api.postSignUp({ birthday, password, email, id, nickname }).catch((err) => {
+      throw new Error(USER.FAIL_SIGNTUP);
+    });
+    window.location.href = LOGIN;
   };
 
   return (
