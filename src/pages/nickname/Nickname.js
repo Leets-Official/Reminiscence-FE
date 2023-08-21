@@ -17,11 +17,13 @@ function NickName() {
   const handleNicknameChange = (e) => {
     setNickname(e.target.value);
   };
-  const saveInfo = () => {
-    api.postSignUp({ birthday, password, email, id, nickname }).catch((err) => {
-      throw new Error(USER.FAIL_SIGNTUP);
-    });
-    window.location.href = LOGIN;
+  const saveInfo = async () => {
+    try {
+      await api.postSignUp({ birthday, password, email, id, nickname });
+      window.location.href = LOGIN;
+    } catch (error) {
+      throw error;
+    }
   };
 
   return (

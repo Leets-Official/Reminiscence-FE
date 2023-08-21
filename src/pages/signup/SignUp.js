@@ -1,7 +1,7 @@
 import SignUpInput from '../../components/SignUpInput';
 import * as S from './SignUp.styled';
 import { SIGNUP_FORMAT, TITLE, NICKNAME } from '../../constants';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { register1 } from '../../store/registerSlice';
 

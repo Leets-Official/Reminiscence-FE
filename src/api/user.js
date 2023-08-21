@@ -1,7 +1,7 @@
 import http from './core';
 
-export const postSignUp = ({ email, password, nickanme, birthday, photographerId }) =>
+export const postSignUp = ({ birthday, password, email, id, nickname }) =>
   http.post({
     url: '/sign-up',
-    body: { email, password, nickanme, birthday, photographerId },
+    data: { birthday, password, email, id, nickname },
   });
