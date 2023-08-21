@@ -11,18 +11,19 @@ function NickName() {
   const isFilled = id.length && nickname.length;
   const { birthday, password, email } = useSelector((state) => state.register);
 
-  console.log("Nickname's password " + password);
   const handleIdChange = (e) => {
     setId(e.target.value);
   };
   const handleNicknameChange = (e) => {
     setNickname(e.target.value);
   };
-  const saveInfo = () => {
-    api.postSignUp({ birthday, password, email, id, nickname }).catch((err) => {
-      throw new Error(USER.FAIL_SIGNUP);
-    });
-    window.location.href = LOGIN;
+  const saveInfo = async () => {
+    try {
+      await api.postSignUp({ birthday, password, email, id, nickname });
+      window.location.href = LOGIN;
+    } catch (error) {
+      throw error;
+    }
   };
 
   return (
