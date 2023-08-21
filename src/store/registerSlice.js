@@ -6,10 +6,11 @@ const registerSlice = createSlice({
   initialState: INITAIL_STATE,
   reducers: {
     register1: (state, action) => {
-      const { email, birthday } = action.payload;
+      const { email, password, birthday } = action.payload;
       return {
         ...state,
         email,
+        password,
         birthday,
       };
     },
