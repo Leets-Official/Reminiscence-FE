@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/userSlice';
 import { GALLERY } from '../../constants/route';
+import * as api from '../../api';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -18,9 +19,15 @@ function Login() {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
-  const saveInfo = () => {
+
+  const handleLogin = async () => {
     // TODO: API 연결하여 유저 데이터 페치
-    dispatch(login({ email, password }));
+    try {
+      await api.postLogin({ email, password });
+      dispatch(login({ email, password }));
+    } catch (e) {
+      throw new Error(e);
+    }
   };
 
   return (
@@ -40,7 +47,7 @@ function Login() {
           ))}
           <S.ButtonContainer>
             {isFilled ? (
-              <S.NextButton to={GALLERY} isfilled={isFilled} onClick={saveInfo}>
+              <S.NextButton to={GALLERY} isfilled={isFilled} onClick={handleLogin}>
                 로그인
               </S.NextButton>
             ) : (

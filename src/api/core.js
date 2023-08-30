@@ -17,6 +17,7 @@ const handleRequest = (config) => {
           ...config.headers,
           Authorization: `Bearer ${TOKEN}`,
         },
+        withCredential: true,
       }
     : config;
 };
